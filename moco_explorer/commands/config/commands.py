@@ -1,5 +1,6 @@
 import click
 from moco_wrapper import Moco
+from moco_explorer.models.format import RawFormatter
 
 
 @click.group()
@@ -7,13 +8,14 @@ from moco_wrapper import Moco
 def config(ctx):
     pass
 
-
 @config.command()
 @click.pass_context
 def get(ctx):
     configuration = ctx.obj["config"]
+    formatter = ctx.obj["format"]
+
     configuration.load()
-    click.echo(configuration.config)
+    formatter.format_single(configuration.config)
 
 
 @config.command()
@@ -43,6 +45,7 @@ def create(ctx, skip_auth):
         configuration = ctx.obj["config"]
         configuration.create_account_auth(email, password, domain)
 
+
 @config.command()
 @click.pass_context
 def authenticate(ctx):
@@ -51,8 +54,8 @@ def authenticate(ctx):
 
     if configuration.needs_authentication:
         auth = {
-            "domain" : configuration.get("domain"),
-            "email" : configuration.get("email"),
+            "domain": configuration.get("domain"),
+            "email": configuration.get("email"),
             "password": configuration.get("password")
         }
 
@@ -65,5 +68,3 @@ def authenticate(ctx):
         )
 
         configuration.load()
-
-

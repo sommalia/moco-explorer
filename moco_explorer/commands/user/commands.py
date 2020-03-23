@@ -9,7 +9,10 @@ def user(ctx):
 @user.command()
 @click.pass_context
 def getlist(ctx):
-    pass
+    formatter = ctx.obj["format"]
+    moco = ctx.obj["moco"]
+
+
 
 @user.command()
 @click.pass_context

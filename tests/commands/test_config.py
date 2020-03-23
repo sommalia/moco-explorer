@@ -2,6 +2,7 @@ import pytest
 
 from ..base import BaseCliTest
 from moco_explorer.commands import config
+from moco_explorer.models.format import RawFormatter
 from moco_explorer.models import Configuration
 
 @pytest.fixture
@@ -24,7 +25,8 @@ class TestCliConfig(BaseCliTest):
         c.create(api_key, domain)
 
         obj = {
-            "config": c
+            "config": c,
+            "format": RawFormatter()
         }
 
         result = self.runner.invoke(config.get, obj=obj)

@@ -10,7 +10,12 @@ def project(ctx):
 @project.command()
 @click.pass_context
 def getlist(ctx):
-    pass
+    moco = ctx.obj["moco"]
+    formatter = ctx.obj["format"]
+
+    items_list = moco.Project.getlist().items
+
+    formatter.format_list(items_list)
 
 
 @project.command()

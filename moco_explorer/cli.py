@@ -4,6 +4,8 @@ import click
 import json
 from os import environ, path
 
+from moco_wrapper import Moco
+
 import moco_explorer.commands as cmd
 import moco_explorer.models as models
 
@@ -13,8 +15,9 @@ DEFAULT_CONFIG = path.join(environ.get("HOME"), ".moco_explorer.json")
 @click.group()
 @click.option("--config", default=DEFAULT_CONFIG)
 @click.option("--mode", type=click.Choice(["interactive", "script"]), default="interactive")
+@click.option("--formatter", type=click.Choice(["json", "csv", "text"]), default="text")
 @click.pass_context
-def main(ctx, config, mode):
+def main(ctx, config, mode, formatter):
     """Console script for moco_explorer."""
     ctx.ensure_object(dict)
 
@@ -26,6 +29,22 @@ def main(ctx, config, mode):
         # interactive mode, path does not exists, also tries to invoke non config command
         click.echo("config file does not exist, create it")
         ctx.invoke(cmd.config.create)
+
+    if ctx.invoked_subcommand != "config":
+        ctx.invoke(cmd.config.authenticate)
+        ctx.obj["moco"] = Moco(
+            auth={
+                "api_key": configuration.get("api_key"),
+                "domain": configuration.get("domain")
+            }
+        )
+
+    if formatter == "json":
+        ctx.obj["format"] = models.format.JsonFormatter()
+    elif formatter == "csv":
+        ctx.obj["format"] = models.format.CsvFormatter()
+    else:
+        ctx.obj["format"] = models.format.TextFormatter()
 
     return 0
 
