@@ -27,3 +27,9 @@ class TestCliMain(BaseCliTest):
 
         commands = self.extract_commands_list(result.output)
         assert "invoice" in commands
+
+    def test_config_in_commands_list(self):
+        result = self.runner.invoke(cli.main)
+
+        commands = self.extract_commands_list(result.output)
+        assert "config" in commands

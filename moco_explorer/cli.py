@@ -18,7 +18,7 @@ def main(args=None):
 main.add_command(cmd.project)
 main.add_command(cmd.user)
 main.add_command(cmd.invoice)
+main.add_command(cmd.config)
 
 if __name__ == "__main__":
-    # add sys.path when directly called
     sys.exit(main())  # pragma: no cover
