@@ -14,6 +14,7 @@ class Configuration(object):
         self.config_path = config_path
 
         self.config = None
+        self.needs_authentication = True
 
     def load(self):
         """
@@ -24,6 +25,12 @@ class Configuration(object):
             config = json.load(fp)
 
         self.config = config
+
+        if "password" in self.config.keys():
+            self.needs_authentication = True
+
+        if "api_key" in self.config.keys():
+            self.needs_authentication = False
 
     def get(self, key):
         """
@@ -49,6 +56,27 @@ class Configuration(object):
         """
         config = {
             "api_key": api_key,
+            "domain": domain
+        }
+
+        with open(self.config_path, "w") as fp:
+            json.dump(config, fp)
+
+        self.config = None
+
+    def create_account_auth(self, email, password, domain):
+        """
+        Creates the configuration file with user authentication information
+
+        :param email: Users email address
+        :param password: Users password
+        :param domain: Api domain path
+
+        .. note:: This file will be overwritten once authentication was successfull
+        """
+        config = {
+            "email": email,
+            "password": password,
             "domain": domain
         }
 

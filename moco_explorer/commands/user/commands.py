@@ -1,4 +1,5 @@
 import click
+from moco_wrapper import Moco
 
 @click.group()
 @click.pass_context
