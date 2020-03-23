@@ -11,25 +11,14 @@ from .base import BaseCliTest
 class TestCliMain(BaseCliTest):
 
     def test_project_command_in_commands_list(self):
-        result = self.runner.invoke(cli.main, ["--help"])
-        commands = self.extract_commands_list(result.output)
-        assert "project" in commands
+        assert "project" in cli.main.commands
 
     def test_user_command_in_commands_list(self):
-        result = self.runner.invoke(cli.main, ["--help"])
-
-        commands = self.extract_commands_list(result.output)
-        assert "user" in commands
+        assert "user" in cli.main.commands
 
     def test_invoice_in_commands_list(self):
-        result = self.runner.invoke(cli.main, ["--help"])
-
-        commands = self.extract_commands_list(result.output)
-        assert "invoice" in commands
+        assert "invoice" in cli.main.commands
 
     def test_config_in_commands_list(self):
-        result = self.runner.invoke(cli.main, ["--help"])
-
-        commands = self.extract_commands_list(result.output)
-        assert "config" in commands
+        assert "config" in cli.main.commands
 

@@ -6,13 +6,7 @@ from ..base import BaseCliTest
 class TestCliProject(BaseCliTest):
 
     def test_getlist_in_commands_list(self):
-        result = self.runner.invoke(project.main, ["--help"])
-
-        commands = self.extract_commands_list(result.output)
-        assert "getlist" in commands
+        assert "getlist" in project.main.commands
 
     def test_get_in_commands_list(self):
-        result = self.runner.invoke(project.main, ["--help"])
-
-        commands = self.extract_commands_list(result.output)
-        assert "get" in commands
+        assert "get" in project.main.commands

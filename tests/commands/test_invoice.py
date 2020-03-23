@@ -4,13 +4,7 @@ from moco_explorer.commands import invoice
 class TestCliInvoice(BaseCliTest):
 
     def test_getlist_in_commands_list(self):
-        result = self.runner.invoke(invoice.main, ["--help"])
-
-        commands = self.extract_commands_list(result.output)
-        assert "getlist" in commands
+        assert "getlist" in invoice.main.commands
 
     def test_get_in_commands_list(self):
-        result = self.runner.invoke(invoice.main, ["--help"])
-
-        commands = self.extract_commands_list(result.output)
-        assert "get" in commands
+        assert "get" in invoice.main.commands
