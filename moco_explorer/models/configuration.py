@@ -1,5 +1,7 @@
 import json
 
+from os import unlink
+
 
 class Configuration(object):
 
@@ -54,3 +56,6 @@ class Configuration(object):
             json.dump(config, fp)
 
         self.config = None
+
+    def delete(self):
+        unlink(self.config_path)

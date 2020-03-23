@@ -9,11 +9,13 @@ def config(ctx):
 @config.command()
 @click.pass_context
 def get(ctx):
-    pass
+    configuration = ctx.obj["config"]
+    configuration.load()
+    click.echo(configuration.config)
 
 @config.command()
 @click.pass_context
-def create(ctx):
+def create(ctx, skip_auth):
     domain = click.prompt("Enter your moco domain")
     email = click.prompt("Enter your moco email")
     password = click.prompt("Enter your moco password", hide_input=True)
