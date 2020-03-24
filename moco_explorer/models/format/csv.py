@@ -110,7 +110,8 @@ class CsvFormatter(BaseFormatter):
         if prefix == "":
             flat_dic = {}
             for key, value in tuple_list:
-                flat_dic[key] = str(value).strip().replace(";", "").replace(",", "").replace("\r", "\n").replace("\n", "")
+                flat_dic[key] = str(value).strip().replace(";", "").replace(",", "").\
+                    replace("\r", "\n").replace("\n", ",").replace(",,", ",")
 
             return flat_dic
 

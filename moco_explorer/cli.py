@@ -16,8 +16,9 @@ DEFAULT_CONFIG = path.join(environ.get("HOME"), ".moco_explorer.json")
 @click.option("--config", default=DEFAULT_CONFIG)
 @click.option("--mode", type=click.Choice(["interactive", "script"]), default="interactive")
 @click.option("--formatter", type=click.Choice(["json", "csv", "text"]), default="text")
+@click.option("--debug-proxy", is_flag=True)
 @click.pass_context
-def main(ctx, config, mode, formatter):
+def main(ctx, config, mode, formatter, debug_proxy):
     """Console script for moco_explorer."""
     ctx.ensure_object(dict)
 
@@ -38,6 +39,12 @@ def main(ctx, config, mode, formatter):
                 "domain": configuration.get("domain")
             }
         )
+
+        if debug_proxy:
+            ctx.obj["moco"].requestor.session.proxies = {
+                "https": "127.0.0.1:8080"
+            }
+            ctx.obj["moco"].requestor.session.verify = False
 
     if formatter == "json":
         ctx.obj["format"] = models.format.JsonFormatter()
