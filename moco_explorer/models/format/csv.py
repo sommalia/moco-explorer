@@ -5,6 +5,32 @@ import json
 
 class CsvFormatter(BaseFormatter):
 
+    def _sort_header_keys(self, header_keys):
+        """
+        Sorts the header keys of the csv file by importance
+
+        :param header_keys: The original keys array
+        :return: The sorted keys array
+        """
+        high_importance_keys = ["id", "identifier", "name", "title"]
+        low_importance_keys = ["info", "note", "created_at", "updated_at"]
+
+        new_header_keys = []
+
+        for important_key in high_importance_keys:
+            if important_key in header_keys:
+                new_header_keys.append(important_key)
+
+        other_keys = [x for x in header_keys if x not in high_importance_keys and x not in low_importance_keys]
+        new_header_keys.extend(sorted(other_keys))
+
+        for not_important_key in low_importance_keys:
+            if not_important_key in header_keys:
+                new_header_keys.append(not_important_key)
+
+        return new_header_keys
+
+
     def format_single(self, item):
         return self.format_list([item])
 
@@ -17,6 +43,8 @@ class CsvFormatter(BaseFormatter):
 
             header_keys.extend([x for x in flat_dic.keys() if x not in header_keys])
             flat_items.append(flat_dic)
+
+        header_keys = self._sort_header_keys(header_keys)
 
         header = []
         body = []
