@@ -22,14 +22,32 @@ class CsvFormatter(BaseFormatter):
                 new_header_keys.append(important_key)
 
         other_keys = [x for x in header_keys if x not in high_importance_keys and x not in low_importance_keys]
-        new_header_keys.extend(sorted(other_keys))
+        other_keys = sorted(other_keys)
+
+        # extract prefixes
+        prefixes = []
+        for other_key in other_keys:
+            if "." in other_key:
+                prefix = ".".join(other_key.split(".")[:-1])
+                if prefix not in prefixes:
+                    prefixes.append(prefix)
+
+        # extract sublists
+        for prefix in prefixes:
+            # remove the prefix from the sublist and sort it
+            sublist = self._sort_header_keys([x.split(".")[-1] for x in other_keys if x.startswith(prefix)])
+            # remove the items from the sublist from the other_keys list
+            sublist = ["{}.{}".format(prefix, x) for x in sublist]
+            other_keys = [x for x in other_keys if x not in sublist]
+            other_keys.extend(sublist)
+
+        new_header_keys.extend(other_keys)
 
         for not_important_key in low_importance_keys:
             if not_important_key in header_keys:
                 new_header_keys.append(not_important_key)
 
         return new_header_keys
-
 
     def format_single(self, item):
         return self.format_list([item])
@@ -65,7 +83,6 @@ class CsvFormatter(BaseFormatter):
         body_lines = "\n".join([";".join(x) for x in body])
         click.echo(header_line)
         click.echo(body_lines)
-
 
     def obj_to_dict(self, obj):
         dict_item = obj
@@ -110,7 +127,7 @@ class CsvFormatter(BaseFormatter):
         if prefix == "":
             flat_dic = {}
             for key, value in tuple_list:
-                flat_dic[key] = str(value).strip().replace(";", "").replace(",", "").\
+                flat_dic[key] = str(value).strip().replace(";", "").replace(",", ""). \
                     replace("\r", "\n").replace("\n", ",").replace(",,", ",")
 
             return flat_dic

@@ -13,12 +13,11 @@ DEFAULT_CONFIG = path.join(environ.get("HOME"), ".moco_explorer.json")
 
 
 @click.group()
-@click.option("--config", default=DEFAULT_CONFIG)
-@click.option("--mode", type=click.Choice(["interactive", "script"]), default="interactive")
-@click.option("--formatter", type=click.Choice(["json", "csv", "text"]), default="text")
+@click.option("-c", "--config", default=DEFAULT_CONFIG, type=click.Path(writable=True))
+@click.option("-f", "--formatter", type=click.Choice(["json", "csv", "text"]), default="text")
 @click.option("--debug-proxy", is_flag=True)
 @click.pass_context
-def main(ctx, config, mode, formatter, debug_proxy):
+def main(ctx, config, formatter, debug_proxy):
     """Console script for moco_explorer."""
     ctx.ensure_object(dict)
 
@@ -26,7 +25,7 @@ def main(ctx, config, mode, formatter, debug_proxy):
     configuration = models.Configuration(config)
     ctx.obj["config"] = configuration
 
-    if ctx.invoked_subcommand != "config" and not path.exists(config) and mode == "interactive":
+    if ctx.invoked_subcommand != "config" and not path.exists(config):
         # interactive mode, path does not exists, also tries to invoke non config command
         click.echo("config file does not exist, create it")
         ctx.invoke(cmd.config.create)
