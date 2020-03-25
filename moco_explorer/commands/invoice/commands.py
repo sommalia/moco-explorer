@@ -29,6 +29,7 @@ def getlist(ctx, page, retrieve_all):
         items_list = moco.Invoice.getlist(page=page)
         formatter.format_list(items_list.items)
 
+
 @invoice.command()
 @click.argument("invoice-id", type=int)
 @click.pass_context
@@ -38,6 +39,7 @@ def get(ctx, invoice_id):
 
     invoice_item = moco.Invoice.get(invoice_id)
     formatter.format_single(invoice_item.data)
+
 
 @invoice.command()
 @click.argument("invoice-id", type=int)

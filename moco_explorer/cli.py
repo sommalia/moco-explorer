@@ -8,12 +8,10 @@ from moco_wrapper import Moco
 
 import moco_explorer.commands as cmd
 import moco_explorer.models as models
-
-DEFAULT_CONFIG = path.join(environ.get("HOME"), ".moco_explorer.json")
-
+import moco_explorer.const as const
 
 @click.group()
-@click.option("-c", "--config", default=DEFAULT_CONFIG, type=click.Path(writable=True))
+@click.option("-c", "--config", default=const.DEFAULT_CONFIG, type=click.Path(writable=True))
 @click.option("-f", "--formatter", type=click.Choice(["json", "csv", "text"]), default="text")
 @click.option("--debug-proxy", is_flag=True)
 @click.pass_context
@@ -59,6 +57,7 @@ main.add_command(cmd.project.main)
 main.add_command(cmd.user.main)
 main.add_command(cmd.invoice.main)
 main.add_command(cmd.config.main)
+main.add_command(cmd.offer.main)
 
 if __name__ == "__main__":
     sys.exit(main(obj={}))  # pragma: no cover
