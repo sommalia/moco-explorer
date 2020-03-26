@@ -22,3 +22,8 @@ class TestCliMain(BaseCliTest):
     def test_config_in_commands_list(self):
         assert "config" in cli.main.commands
 
+    def test_company_in_commands_list(self):
+        assert "company" in cli.main.commands
+
+    def test_offer_in_company_list(self):
+        assert "offer" in cli.main.commands

@@ -14,19 +14,53 @@ moco-explorer
         :alt: Documentation Status
 
 
-
-
-Command line to for exporting data over the moco api
+The quick and easy interface for exporting data from moco.
 
 
 * Free software: GNU General Public License v3
-* Documentation: https://moco-explorer.readthedocs.io.
+* Documentation: https://moco-explorer.readthedocs.io (work in progress)
+
+Disclaimer
+----------
+
+This project is in no way finished, or polished.
+I am not responsible for any commercial, financial or emotional damage that may or may not be caused by using this project.
 
 
 Features
 --------
 
-* TODO
+* Easy access to your moco data
+* Csv/Json/Text Export
+* Authentication over cli with username and password
+
+
+Requirements
+------------
+
+* python 3.5 or greater
+* moco_wrapper 0.6.2 or greater
+
+Installation
+------------
+
+From source
+===========
+
+.. code-block:: shell
+
+    $ git clone https://github.com/sommalia/moco_explorer moco-explorer
+    $ cd moco-explorer
+    $ pip install -r requirements_dev.txt
+    $ make install
+
+From pip
+========
+
+.. code-block:: shell
+
+    $ pip install moco_explorer
+
 
 Credits
 -------
