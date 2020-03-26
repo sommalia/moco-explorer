@@ -40,8 +40,14 @@ class TextFormatter(CsvFormatter):
 
 
     def format_list(self, target):
-        for item in target:
+        for i, item in enumerate(target):
             self.format_single(item)
-            click.echo("========================")
-            click.echo("========================")
+
+            terminal_width, terminal_height = click.get_terminal_size()
+            splitter_line = "".join(["="] * terminal_width)
+
+            if i < len(target) -1:
+                click.echo(splitter_line)
+                click.echo(splitter_line)
+
 
