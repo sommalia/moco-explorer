@@ -4,3 +4,4 @@ class BaseFormatter(object):
 
     def format_single(self, target):
         pass
+
