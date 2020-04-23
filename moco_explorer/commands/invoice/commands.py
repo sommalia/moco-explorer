@@ -9,7 +9,7 @@ def invoice(ctx):
 
 @invoice.command()
 @click.option("-p", "--page", help="page number", type=int, default=1)
-@click.option('-a', "--retrieve-all", help="loops over the whole list", is_flag=True)
+@click.option('-a', "--retrieve-all", help="Retrieve all objects from the system (ignores page option)", is_flag=True)
 @click.pass_context
 def getlist(ctx, page, retrieve_all):
     formatter = ctx.obj["format"]

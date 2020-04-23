@@ -25,7 +25,7 @@ def get(ctx, offer_id):
 @click.option("--start", type=click.DateTime(formats=DEFAULT_DATETIME_FORMATS))
 @click.option("--end", type=click.DateTime(formats=DEFAULT_DATETIME_FORMATS))
 @click.option("-p", '--page', type=int)
-@click.option("-a", "--retrieve-all", is_flag=True)
+@click.option("-a", "--retrieve-all", help="Retrieve all objects from the system (ignores page option)", is_flag=True)
 @click.pass_context
 def getlist(ctx, status, start, end, page, retrieve_all):
     formatter = ctx.obj["format"]

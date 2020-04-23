@@ -12,7 +12,7 @@ def project(ctx):
 @click.option("-p", "--page", help="page number", type=int, default=1)
 @click.option("--include-archived", help="include archived projects", is_flag=True)
 @click.option("--include-company", help="include whole company", is_flag=True)
-@click.option('-a', "--retrieve-all", help="loops over the whole list", is_flag=True)
+@click.option('-a', "--retrieve-all", help="Retrieve all objects from the system (ignores page option)", is_flag=True)
 def getlist(ctx, page, include_archived, include_company, retrieve_all):
     moco = ctx.obj["moco"]
     formatter = ctx.obj["format"]

@@ -22,7 +22,7 @@ def get(ctx, company_id):
 @company.command()
 @click.option("-t", "--company-type", type=click.Choice([e.value for e in CompanyType]))
 @click.option("-p", "--page", help="page number", type=int, default=1)
-@click.option('-a', "--retrieve-all", help="loops over the whole list", is_flag=True)
+@click.option('-a', "--retrieve-all", help="Retrieve all objects from the system (ignores page option)", is_flag=True)
 @click.pass_context
 def getlist(ctx, company_type, page, retrieve_all):
     formatter = ctx.obj["format"]

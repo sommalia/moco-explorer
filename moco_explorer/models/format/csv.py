@@ -35,7 +35,15 @@ class CsvFormatter(BaseFormatter):
         # extract sublists
         for prefix in prefixes:
             # remove the prefix from the sublist and sort it
-            sublist = self._sort_header_keys([x.split(".")[-1] for x in other_keys if x.startswith(prefix)])
+
+            # extract the sublist
+            sublist = self._sort_header_keys( # get all that start with prefix and when the prefix is replaced contain only one dot
+                [x.split(".")[-1] for x in other_keys if x.startswith(prefix) and len(x.replace(prefix, "").split(".")) == 2])
+            # eg. when we have a sublist in a sublist
+            #
+            # customer.name -> will be in customer sublist
+            # customer.user.lastname -> will be in customer.user sublist
+
             # remove the items from the sublist from the other_keys list
             sublist = ["{}.{}".format(prefix, x) for x in sublist]
             other_keys = [x for x in other_keys if x not in sublist]

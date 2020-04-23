@@ -6,7 +6,7 @@ def contact():
     pass
 
 
-@contact.command()
+@contact.command(help="Retrieve a single contact")
 @click.argument("contact-id", type=int)
 @click.pass_context
 def get(ctx, contact_id):
@@ -25,7 +25,7 @@ def get(ctx, contact_id):
     formatter.format_single(contact_obj.data)
 
 
-@contact.command()
+@contact.command(help="Retrieve a list of contacts")
 @click.option("-p", "--page", help="page number", type=int, default=1)
 @click.option('-a', "--retrieve-all", help="loops over the whole list", is_flag=True)
 @click.pass_context
