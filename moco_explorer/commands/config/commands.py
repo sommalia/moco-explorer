@@ -26,6 +26,9 @@ def create(ctx, skip_auth):
     email = click.prompt("Enter your moco email")
     password = click.prompt("Enter your moco password", hide_input=True)
 
+    if ".mocoapp.com" in domain and len(domain.split(".")) == 3:
+        domain = domain.split(".")[0]
+
     auth = {
         "domain": domain,
         "email": email,

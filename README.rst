@@ -62,41 +62,87 @@ From pip
     $ pip install moco_explorer
 
 Quickstart
-==========
+----------
 
-Currently the following endpoints can be queried
+Authentication
+==============
 
-* company
-* contact
-* invoice
-* offer
-* project
-* user
+To retrieve information from yout moco instance the moco_explorer needs to authenticate with it. For your first request,
+it will stop and ask for your account information.
 
-.. note::
+You can also manually create the configuration file with `moco_explore config create`.
 
-    For more information see `moco_explorer --help`.
+.. code-block:: shell
 
-Retrieving a list of *all* contacts in *csv* format
+    $ moco_explorer config create
+    $ > Enter your moco domain: testcompany.mocoapp.com // testcompany would also work
+    $ > Enter your moco email: testaccount@testcompany.com
+    $ > Enter your moco password: *******
+
+After that a config file in your users home directory will be created.
+
+.. code-block:: shell
+
+    $ cat $HOME/.moco_explorer.json
+    {
+        "domain": "testcompany",
+        "api_key": "HERE IS THE API KEY"
+    }
+
+If you want to load or create your configuration file in an alternative location you can specify the path with the **-c/--config** option.
+
+
+.. code-block:: shell
+
+    $ moco_explorer -c $HOME/alternative-moco-config.json config create
+
+By default the moco_explorer will look for the configuration file under $HOME/.moco_explorer.json. If you created the configuration
+file in an alternative location make sure you always specify the **-c/--config** option.
+
+What can I do?
+==============
+
+Currently the following endpoints can be queried (also accessible with `moco_explorer --help`)
+
+.. code-block:: shell
+
+    company
+    config
+    contact
+    invoice
+    offer
+    project
+    user
+
+
+
+Retrieving a list of **all** contacts in **csv** format
 
 .. code-block:: shell
 
     $ moco_explorer -f csv contact getlist -a
 
 
-Retrieving a single company object (id 123) in *json* format
+Retrieving a single company object (id **123**) in **json** format
 
 .. code-block:: shell
 
     $ moco_explorer -f json company get 123
 
 
-Get an overview over a specific project (id 1233)
+Get an overview over a specific project (id **1233**)
 
 .. code-block:: shell
 
     $ moco_explorer -f text project get 1233
 
+Work through the **pages** of the projects (100 items per page). If you have more than 100 objects, the results are
+paginated (eg. for 105 items, the first page will contain 100, the second 5 items).
+
+.. code-block:: shell
+
+    $ moco_explorer -f json project getlist --page 1
+    $ moco_explorer -f json project getlist --page 2
 
 Credits
 -------

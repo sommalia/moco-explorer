@@ -26,7 +26,7 @@ def main(ctx, config, formatter, debug_proxy):
     if ctx.invoked_subcommand != "config" and not path.exists(config):
         # interactive mode, path does not exists, also tries to invoke non config command
         click.echo("config file does not exist, create it")
-        ctx.invoke(cmd.config.create)
+        ctx.invoke(cmd.config.create, config_path=config)
 
     if ctx.invoked_subcommand != "config":
         ctx.invoke(cmd.config.authenticate)
