@@ -107,6 +107,7 @@ Currently the following endpoints can be queried (also accessible with `moco_exp
 
     company
     contact
+    deal
     invoice
     offer
     project
