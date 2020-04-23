@@ -61,6 +61,44 @@ From pip
 
     $ pip install moco_explorer
 
+Quickstart
+==========
+
+Currently the following endpoints can be queried
+
+* company
+* contact
+* invoice
+* offer
+* project
+* user
+
+.. note::
+
+    For more information see `moco_explorer --help`.
+
+Retrieving a list of *all* contacts in *csv* format
+
+.. code-block:: shell
+
+    $ moco_explorer -f csv contact getlist -a
+
+
+Retrieving a single company object (id 123) in *json* format
+
+.. code-block:: shell
+
+    $ moco_explorer -f json company get 123
+
+
+Get an overview over a specific project (id 1233, include company information in response)
+
+.. code-block:: shell
+
+    $ moco_explorer -f text project get 1233 --include-company
+
+
+
 
 Credits
 -------
