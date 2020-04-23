@@ -1,6 +1,7 @@
 from .csv import CsvFormatter
 import click
 
+
 class TextFormatter(CsvFormatter):
     def format_single(self, target):
         target_as_dict = self.obj_to_dict(target)
@@ -9,7 +10,7 @@ class TextFormatter(CsvFormatter):
         header_keys = self._sort_header_keys(flat_dict.keys())
 
         lines = {
-            "base" : []
+            "base": []
         }
 
         for key in header_keys:
@@ -37,8 +38,6 @@ class TextFormatter(CsvFormatter):
                     if value.strip() != "":
                         click.echo("{}: {}".format(key, value))
 
-
-
     def format_list(self, target):
         for i, item in enumerate(target):
             self.format_single(item)
@@ -46,8 +45,6 @@ class TextFormatter(CsvFormatter):
             terminal_width, terminal_height = click.get_terminal_size()
             splitter_line = "".join(["="] * terminal_width)
 
-            if i < len(target) -1:
+            if i < len(target) - 1:
                 click.echo(splitter_line)
                 click.echo(splitter_line)
-
-

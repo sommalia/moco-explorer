@@ -59,6 +59,7 @@ main.add_command(cmd.invoice.main)
 main.add_command(cmd.config.main)
 main.add_command(cmd.offer.main)
 main.add_command(cmd.company.main)
+main.add_command(cmd.contact.main)
 
 if __name__ == "__main__":
     sys.exit(main(obj={}))  # pragma: no cover
