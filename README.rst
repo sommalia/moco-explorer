@@ -18,7 +18,6 @@ The quick and easy interface for exporting data from moco.
 
 
 * Free software: GNU General Public License v3
-* Documentation: https://moco-explorer.readthedocs.io (work in progress)
 
 Disclaimer
 ----------
@@ -107,7 +106,6 @@ Currently the following endpoints can be queried (also accessible with `moco_exp
 .. code-block:: shell
 
     company
-    config
     contact
     invoice
     offer
