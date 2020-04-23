@@ -46,6 +46,11 @@ def getlist(ctx, page, include_archived, include_company, retrieve_all):
         formatter.format_list(items_list.items)
 
 @project.command()
+@click.argument("project-id", type=int)
 @click.pass_context
-def get(ctx):
-    pass
+def get(ctx, project_id):
+    formatter = ctx.obj["format"]
+    moco = ctx.obj["moco"]
+
+    company_obj = moco.Project.get(project_id)
+    formatter.format_single(company_obj.data)

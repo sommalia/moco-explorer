@@ -91,13 +91,11 @@ Retrieving a single company object (id 123) in *json* format
     $ moco_explorer -f json company get 123
 
 
-Get an overview over a specific project (id 1233, include company information in response)
+Get an overview over a specific project (id 1233)
 
 .. code-block:: shell
 
-    $ moco_explorer -f text project get 1233 --include-company
-
-
+    $ moco_explorer -f text project get 1233
 
 
 Credits
