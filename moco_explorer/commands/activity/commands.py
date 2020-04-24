@@ -35,6 +35,7 @@ def getlist(ctx, start, end, user_id, project_id, task_id, page, retrieve_all):
 
         end_reached = False
         next_page = 1
+
         while not end_reached:
             items_list = moco.Activity.getlist(
                 page=next_page,
