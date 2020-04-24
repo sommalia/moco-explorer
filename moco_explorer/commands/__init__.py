@@ -1,3 +1,4 @@
+from . import activity
 from . import company
 from . import config
 from . import invoice
