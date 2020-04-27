@@ -1,4 +1,7 @@
 import click
+
+from moco_explorer.commands.invoice import payment
+
 from os.path import realpath
 
 @click.group()
@@ -6,6 +9,8 @@ from os.path import realpath
 def invoice(ctx):
     pass
 
+# add payment module
+invoice.add_command(payment.main)
 
 @invoice.command(help="Retrieve a single invoice")
 @click.option("-p", "--page", help="page number", type=int, default=1)

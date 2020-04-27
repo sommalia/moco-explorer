@@ -23,7 +23,7 @@ def get(ctx, deal_category_id):
     deal_cat_obj = moco.DealCategory.get(deal_category_id)
     formatter.format_single(deal_cat_obj.data)
 
-@category.command()
+@category.command(help="Retrieve a list of deal catgories")
 @click.option("-p", "--page", help="Page number", type=int, default=1)
 @click.option('-a', "--retrieve-all", help="Retrieve all objects from the system (ignores page option)", is_flag=True)
 @click.pass_context
