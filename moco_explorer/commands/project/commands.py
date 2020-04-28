@@ -1,22 +1,26 @@
 import click
 
-from moco_explorer.commands.project import contract
+from moco_explorer.commands.project import contract, expense
+
 
 @click.group()
 @click.pass_context
 def project(ctx):
     pass
 
+
 # add project contract module
 project.add_command(contract.main)
+# add project expense module
+project.add_command(expense.main)
 
 
 @project.command(help="Retrieve a list of projects")
-@click.pass_context
 @click.option("-p", "--page", help="page number", type=int, default=1)
 @click.option("--include-archived", help="include archived projects", is_flag=True)
 @click.option("--include-company", help="include whole company", is_flag=True)
 @click.option('-a', "--retrieve-all", help="Retrieve all objects from the system (ignores page option)", is_flag=True)
+@click.pass_context
 def getlist(ctx, page, include_archived, include_company, retrieve_all):
     """
     Retrieve a list of projects
