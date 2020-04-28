@@ -1,10 +1,14 @@
 import click
 
+from moco_explorer.commands.project import contract
 
 @click.group()
 @click.pass_context
 def project(ctx):
     pass
+
+# add project contract module
+project.add_command(contract.main)
 
 
 @project.command(help="Retrieve a list of projects")
