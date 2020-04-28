@@ -1,6 +1,6 @@
 import click
 
-from moco_explorer.commands.project import contract, expense, recurring_expense
+from moco_explorer.commands.project import contract, expense, recurring_expense, task
 
 
 @click.group(help="Project module")
@@ -9,12 +9,12 @@ def project(ctx):
     pass
 
 
-# add project contract module
+# add project modules
 project.add_command(contract.main)
-# add project expense module
 project.add_command(expense.main)
-# add project recurring expense module
 project.add_command(recurring_expense.main)
+project.add_command(task.main)
+
 
 @project.command(help="Retrieve a list of projects")
 @click.option("-p", "--page", help="page number", type=int, default=1)
