@@ -1,6 +1,6 @@
 import click
 
-from moco_explorer.commands.project import contract, expense, recurring_expense, task
+from moco_explorer.commands.project import contract, expense, recurring_expense, task, payment_schedule
 
 
 @click.group(help="Project module")
@@ -14,6 +14,7 @@ project.add_command(contract.main)
 project.add_command(expense.main)
 project.add_command(recurring_expense.main)
 project.add_command(task.main)
+project.add_command(payment_schedule.main)
 
 
 @project.command(help="Retrieve a list of projects")
