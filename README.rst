@@ -105,13 +105,17 @@ Currently the following endpoints can be queried (also accessible with `moco_exp
 
 .. code-block:: shell
 
+    activity
     company
     contact
     deal
     invoice
     offer
+    planning-entry
     project
+    schedule
     user
+    unit
 
 
 
