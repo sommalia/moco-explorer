@@ -8,3 +8,5 @@ from . import user
 from . import contact
 from . import deal
 from . import unit
+
+from . import planning_entry
