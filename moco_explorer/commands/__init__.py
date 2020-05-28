@@ -9,4 +9,5 @@ from . import contact
 from . import deal
 from . import unit
 
-from . import planning_entry
+from . import planning_entry  # new way for schedule
+from . import schedule  # old way for schedules + absences

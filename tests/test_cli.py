@@ -36,3 +36,6 @@ class TestCliMain(BaseCliTest):
 
     def test_planning_entry_in_commands_list(self):
         assert "planning-entry" in cli.main.commands
+
+    def test_schedule_in_commands_list(self):
+        assert "schedule" in cli.main.commands
