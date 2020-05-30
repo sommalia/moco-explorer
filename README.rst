@@ -109,12 +109,22 @@ Currently the following endpoints can be queried (also accessible with `moco_exp
     company
     contact
     deal
+        category
     invoice
+        payment
     offer
     planning-entry
     project
+        contract
+        expense
+        payment_schedule
+        recurring_expense
+        task
     schedule
     user
+        employment
+        holiday
+        presence
     unit
 
 
