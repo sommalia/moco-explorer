@@ -61,6 +61,10 @@ main.add_command(cmd.offer.main)
 main.add_command(cmd.company.main)
 main.add_command(cmd.contact.main)
 main.add_command(cmd.deal.main)
+main.add_command(cmd.activity.main)
+main.add_command(cmd.unit.main)
+main.add_command(cmd.planning_entry.main)
+main.add_command(cmd.schedule.main)
 
 if __name__ == "__main__":
     sys.exit(main(obj={}))  # pragma: no cover

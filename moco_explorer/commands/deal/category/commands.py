@@ -1,49 +1,40 @@
 import click
 
-from moco_explorer.commands.deal import category
-from moco_wrapper.models.deal import DealStatus
-
-
-@click.group()
+@click.group(help="Deal category module")
 @click.pass_context
-def deal(ctx):
+def category(ctx):
     pass
 
-# import deal category entry point
-deal.add_command(category.main)
 
-@deal.command(help="Retrieve a single deal object")
-@click.argument("deal-id", type=int)
+@category.command(help="Retrieve a single deal category")
+@click.argument("deal-category-id", type=int)
 @click.pass_context
-def get(ctx, deal_id):
+def get(ctx, deal_category_id):
     """
-    Retrieve a single deal object
+    Retrieve a single deal category
 
     :param ctx: click context
-    :param deal_id: deal id
-    :return: formatted deal object
+    :param deal_category_id: id of the category
+    :return: formatted category object
     """
     formatter = ctx.obj["format"]
     moco = ctx.obj["moco"]
 
-    deal_obj = moco.Deal.get(deal_id)
-    formatter.format_single(deal_obj.data)
+    deal_cat_obj = moco.DealCategory.get(deal_category_id)
+    formatter.format_single(deal_cat_obj.data)
 
-
-@deal.command(help="Retrieve a list of deal objects")
-@click.option("--status", type=click.Choice([e.value for e in DealStatus]))
+@category.command(help="Retrieve a list of deal catgories")
 @click.option("-p", "--page", help="Page number", type=int, default=1)
 @click.option('-a', "--retrieve-all", help="Retrieve all objects from the system (ignores page option)", is_flag=True)
 @click.pass_context
-def getlist(ctx, status, page, retrieve_all):
+def getlist(ctx, page, retrieve_all):
     """
-    Retrieve a list of deal objects
+    Retrieve a list of category objects
 
     :param ctx: click context
-    :param status: deal status
     :param page: page number
     :param retrieve_all: flag to retrieve all objects from the system (ignores page option)
-    :return: formatted list of deal objects
+    :return: formatted list of categories
     """
     formatter = ctx.obj["format"]
     moco = ctx.obj["moco"]
@@ -54,8 +45,8 @@ def getlist(ctx, status, page, retrieve_all):
         end_reached = False
         next_page = 1
 
-        while not end_reached:
-            items_list = moco.Deal.getlist(page=next_page, status=status)
+        if not end_reached:
+            items_list = moco.DealCategory.getlist(page=next_page)
 
             next_page = items_list.next_page
             end_reached = items_list.is_last
@@ -64,5 +55,5 @@ def getlist(ctx, status, page, retrieve_all):
 
         formatter.format_list(all_items)
     else:
-        items_list = moco.Deal.getlist(page=page, status=status)
+        items_list = moco.DealCategory.getlist(page=page)
         formatter.format_list(items_list.items)

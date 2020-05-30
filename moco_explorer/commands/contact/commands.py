@@ -44,11 +44,16 @@ def getlist(ctx, page, retrieve_all):
 
     if retrieve_all:
         all_items = []
-        items_list = moco.Contact.getlist(page=1)
-        all_items.extend(items_list.items)
 
-        for i in range(2, items_list.last_page + 1):
-            items_list = moco.Contact.getlist(page=i)
+        end_reached = False
+        next_page = 1
+
+        while not end_reached:
+            items_list = moco.Contact.getlist(page=next_page)
+
+            next_page = items_list.next_page
+            end_reached = items_list.is_last
+
             all_items.extend(items_list.items)
 
         formatter.format_list(all_items)
