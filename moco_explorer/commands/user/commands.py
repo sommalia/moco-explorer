@@ -1,5 +1,5 @@
 import click
-from moco_explorer.commands.user import holiday
+from moco_explorer.commands.user import holiday, employment
 
 @click.group()
 @click.pass_context
@@ -9,6 +9,7 @@ def user(ctx):
 
 # add user modules
 user.add_command(holiday.main)
+user.add_command(employment.main)
 
 @user.command(help="Retrieve a list of users")
 @click.option("-p", "--page", help="page number", type=int, default=1)
