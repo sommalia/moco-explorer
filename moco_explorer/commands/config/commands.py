@@ -8,6 +8,7 @@ from moco_explorer.models.format import RawFormatter
 def config(ctx):
     pass
 
+
 @config.command()
 @click.pass_context
 def get(ctx):
@@ -16,6 +17,13 @@ def get(ctx):
 
     configuration.load()
     formatter.format_single(configuration.config)
+
+
+@config.command()
+@click.pass_context
+def clear(ctx):
+    configuration = ctx.obj["config"]
+    configuration.delete()
 
 
 @config.command()

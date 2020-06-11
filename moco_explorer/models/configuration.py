@@ -1,6 +1,6 @@
 import json
 
-from os import unlink
+from os import unlink, path
 
 
 class Configuration(object):
@@ -86,4 +86,8 @@ class Configuration(object):
         self.config = None
 
     def delete(self):
-        unlink(self.config_path)
+        if path.exists(self.config_path):
+            unlink(self.config_path)
+
+        self.config = None
+        self.needs_authentication = True
