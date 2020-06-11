@@ -72,7 +72,7 @@ class Configuration(object):
         :param password: Users password
         :param domain: Api domain path
 
-        .. note:: This file will be overwritten once authentication was successfull
+        .. note:: This file will be overwritten once authentication was successful
         """
         config = {
             "email": email,
