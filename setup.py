@@ -35,6 +35,7 @@ setup(
     entry_points={
         'console_scripts': [
             'moco_explorer=moco_explorer.cli:main',
+            'mex=moco_explorer.cli:main',
         ],
     },
     install_requires=requirements,
