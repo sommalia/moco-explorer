@@ -6,9 +6,6 @@ moco-explorer
 .. image:: https://img.shields.io/pypi/v/moco_explorer.svg
         :target: https://pypi.python.org/pypi/moco-explorer
 
-.. image:: https://img.shields.io/travis/sommalia/moco_explorer.svg
-        :target: https://travis-ci.org/sommalia/moco-explorer
-
 .. image:: https://readthedocs.org/projects/moco-explorer/badge/?version=latest
         :target: https://moco-explorer.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
